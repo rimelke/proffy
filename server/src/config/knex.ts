@@ -9,6 +9,14 @@ const conn = knex({
     migrations: {
         directory: path.resolve(__dirname, '..', 'database', 'migrations')
     },
+    seeds: {
+        directory: path.resolve(__dirname, '..', 'database', 'seeds')
+    },
+    pool: {
+        afterCreate(conn: { run: (arg0: string, arg1: any) => void }, cb: any) {
+            conn.run('PRAGMA foreign_keys = ON', cb)
+        }
+    },
     useNullAsDefault: true
 })
 

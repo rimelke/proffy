@@ -10,8 +10,8 @@ export async function up(knex: Knex) {
             .onUpdate('CASCADE')
             .notNullable()
 
-        tbl.timestamp('created_at')
-            .defaultTo('now()')
+        tbl.dateTime('created_at')
+            .defaultTo(knex.fn.now())
             .notNullable()
     })
 }
